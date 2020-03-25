@@ -1,7 +1,7 @@
 {
   "name": "mn/fa-php",
   "description": "Farsi PHP",
-  "version": "1.0",
+  "version": "1.1",
   "keywords": [
     "farsi",
     "persian",
@@ -10,7 +10,7 @@
     "jalali"
   ],
   "readme": "README.md",
-  "time": "2019-09-07",
+  "time": "2020-03-25",
   "license": "MIT",
   "authors": [
     {
