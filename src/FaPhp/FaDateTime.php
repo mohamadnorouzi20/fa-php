@@ -80,7 +80,7 @@ class FaDateTime extends DateTime
                 return self::JALALI_WEEK_DAYS[5];
             case 'Friday':
                 return self::JALALI_WEEK_DAYS[6];
-        };
+        }
 
         return null; // Should never happen
     }
