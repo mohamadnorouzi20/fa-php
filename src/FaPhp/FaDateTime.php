@@ -6,25 +6,51 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 
+/**
+ *
+ */
 class FaDateTime extends DateTime
 {
     const JALALI_WEEK_DAYS = [
-        'شنبه', 'یک شنبه', 'دو شنبه', 'سه شنبه', 'چهار شنبه', 'پنج شنبه', 'جمعه'
+        'شنبه',
+        'یک شنبه',
+        'دو شنبه',
+        'سه شنبه',
+        'چهار شنبه',
+        'پنج شنبه',
+        'جمعه'
     ];
 
     const JALALI_MONTHS = [
-        'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+        'فروردین',
+        'اردیبهشت',
+        'خرداد',
+        'تیر',
+        'مرداد',
+        'شهریور',
+        'مهر',
+        'آبان',
+        'آذر',
+        'دی',
+        'بهمن',
+        'اسفند'
     ];
 
     /** @var int */
     protected $jYear, $jMonth, $jDay;
 
+    /**
+     *
+     * @param string $time
+     * @param DateTimeZone $timezone
+     */
     public function __construct($time = 'now', DateTimeZone $timezone = null)
     {
         parent::__construct($time, $timezone);
     }
 
     /**
+     *
      * @return int
      */
     public function jYear()
@@ -33,6 +59,7 @@ class FaDateTime extends DateTime
     }
 
     /**
+     *
      * @return int
      */
     public function jMonth()
@@ -42,7 +69,6 @@ class FaDateTime extends DateTime
 
     /**
      *
-     *
      * @return string
      */
     public function jMonthName()
@@ -51,6 +77,7 @@ class FaDateTime extends DateTime
     }
 
     /**
+     *
      * @return int
      */
     public function jDay()
@@ -59,7 +86,6 @@ class FaDateTime extends DateTime
     }
 
     /**
-     *
      *
      * @return string
      */
@@ -87,10 +113,8 @@ class FaDateTime extends DateTime
 
     /**
      *
-     *
-     * @param  DateTimeZone|null  $timezone
+     * @param DateTimeZone $timezone
      * @return FaDateTime
-     * @throws Exception In case of an invalid timezone
      */
     public static function now(DateTimeZone $timezone = null)
     {
@@ -99,16 +123,17 @@ class FaDateTime extends DateTime
 
     /**
      *
-     *
-     * @param  DateTime  $dateTime
+     * @param DateTime $dateTime
      * @return FaDateTime
-     * @throws Exception
      */
-    private static function createFromDateTime(DateTime $dateTime)
+    public static function createFromDateTime(DateTime $dateTime)
     {
-        list($year, $month, $day, $hour, $minute, $second) = array_map(function ($dateTimePart) {
-            return (int) $dateTimePart;
-        }, explode('-', $dateTime->format('Y-n-j-H-i-s')));
+        list($year, $month, $day, $hour, $minute, $second) = array_map(
+            function ($dateTimePart) {
+                return (int)$dateTimePart;
+            },
+            explode('-', $dateTime->format('Y-n-j-H-i-s'))
+        );
 
         list($jYear, $jMonth, $jDay) = gregorianToJalali($year, $month, $day);
 
@@ -117,16 +142,14 @@ class FaDateTime extends DateTime
 
     /**
      *
-     *
-     * @param  int  $jYear
-     * @param  int  $jMonth
-     * @param  int  $jDay
-     * @param  int  $hour
-     * @param  int  $minute
-     * @param  int  $second
-     * @param  DateTimeZone  $timezone
+     * @param int $jYear
+     * @param int $jMonth
+     * @param int $jDay
+     * @param int $hour
+     * @param int $minute
+     * @param int $second
+     * @param DateTimeZone $timezone
      * @return FaDateTime
-     * @throws Exception
      */
     public static function createFromJalali(
         $jYear,
@@ -141,10 +164,13 @@ class FaDateTime extends DateTime
             throw new Exception('Invalid Jalali date!');
         }
 
-        $gregorian = implode(' ', [
-            implode('-', jalaliToGregorian($jYear, $jMonth, $jDay)),
-            implode(':', [$hour, $minute, $second]),
-        ]);
+        $gregorian = implode(
+            ' ',
+            [
+                implode('-', jalaliToGregorian($jYear, $jMonth, $jDay)),
+                implode(':', [$hour, $minute, $second]),
+            ]
+        );
 
         $faDateTime = new static($gregorian, $timezone);
         $faDateTime->jYear = $jYear;
@@ -155,17 +181,18 @@ class FaDateTime extends DateTime
     }
 
     /**
-     * {@inheritDoc}
-     * 
-     * Calculations are based on gregorian calendar
+     * @inheritDoc
      */
     public function add($interval)
     {
         parent::add($interval);
 
-        list($year, $month, $day) = array_map(function ($dateTimePart) {
-            return (int) $dateTimePart;
-        }, explode('-', $this->format('Y-n-j')));
+        list($year, $month, $day) = array_map(
+            function ($dateTimePart) {
+                return (int)$dateTimePart;
+            },
+            explode('-', $this->format('Y-n-j'))
+        );
 
         list($this->jYear, $this->jMonth, $this->jDay) = gregorianToJalali($year, $month, $day);
 
@@ -173,17 +200,18 @@ class FaDateTime extends DateTime
     }
 
     /**
-     * {@inheritDoc}
-     * 
-     * Calculations are based on gregorian calendar
+     * @inheritDoc
      */
     public function sub($interval)
     {
         parent::sub($interval);
 
-        list($year, $month, $day) = array_map(function ($dateTimePart) {
-            return (int) $dateTimePart;
-        }, explode('-', $this->format('Y-n-j')));
+        list($year, $month, $day) = array_map(
+            function ($dateTimePart) {
+                return (int)$dateTimePart;
+            },
+            explode('-', $this->format('Y-n-j'))
+        );
 
         list($this->jYear, $this->jMonth, $this->jDay) = gregorianToJalali($year, $month, $day);
 
@@ -192,9 +220,8 @@ class FaDateTime extends DateTime
 
     /**
      *
-     *
-     * @param  string  $format
-     * @param  bool  $faDigits
+     * @param string $format
+     * @param bool $faDigits
      * @return string
      */
     public function format($format, $faDigits = false)
@@ -220,7 +247,6 @@ class FaDateTime extends DateTime
     }
 
     /**
-     *
      *
      * @return string
      */
