@@ -1,0 +1,38 @@
+{
+  "name": "mn/fa-php",
+  "description": "Farsi PHP",
+  "version": "0.4",
+  "keywords": [
+    "farsi",
+    "persian",
+    "date",
+    "converter",
+    "jalali"
+  ],
+  "readme": "README.md",
+  "time": "2019-09-07",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mohamad Norouzi",
+      "email": "mohamadnorouzi20@outlook.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2.0"
+  },
+  "require-dev": {
+    "nunomaduro/pest": "^0.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MN\\FaPhp\\": "src/FaPhp/"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "scripts": {
+    "test": "pest"
+  }
+}
