@@ -1,16 +1,16 @@
 {
   "name": "mn/fa-php",
   "description": "Farsi PHP",
-  "version": "1.1",
   "keywords": [
-    "farsi",
-    "persian",
-    "date",
-    "converter",
-    "jalali"
+    "Farsi",
+    "Persian",
+    "Date",
+    "Converter",
+    "Jalali"
   ],
-  "readme": "README.md",
-  "time": "2020-03-25",
+  "type": "library",
+  "version": "1.2",
+  "homepage": "https://github.com/mohamadnorouzi20/fa-php",
   "license": "MIT",
   "authors": [
     {
@@ -19,14 +19,16 @@
     }
   ],
   "require": {
-    "php": "^7.2.5"
+    "php": "^7.3"
   },
   "require-dev": {
-    "nunomaduro/pest": "^0.1.0"
+    "phpunit/phpunit": "^9.0",
+    "nunomaduro/collision": "^5.0",
+    "pestphp/pest": "^0.2.3"
   },
   "autoload": {
     "psr-4": {
-      "MN\\FaPhp\\": "src/FaPhp/"
+      "MN\\FaPhp\\": "src/"
     },
     "files": [
       "src/functions.php"
@@ -34,5 +36,7 @@
   },
   "scripts": {
     "test": "pest"
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

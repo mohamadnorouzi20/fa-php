@@ -94,7 +94,6 @@ function jalaliToGregorian($jYear, $jMonth, $jDay)
     }
     $gd = $days + 1;
 
-    $gm = 0; // silencing the warning
     $february_days = ((($gy % 4 == 0) and ($gy % 100 != 0)) or ($gy % 400 == 0)) ? 29 : 28;
 
     foreach ([0, 31, $february_days, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] as $gm => $v) {
@@ -132,13 +131,9 @@ function validateJalaliDate($jYear, $jMonth, $jDay)
  */
 function validateTime($hour, $minute, $second)
 {
-    if (
+    return  !(
         $hour < 0 || $hour > 23 ||
         $minute < 0 || $minute > 59 ||
         $second < 0 || $second > 59
-    ) {
-        return false;
-    }
-
-    return true;
+    );
 }

@@ -41,8 +41,8 @@ class FaDateTime extends DateTime
 
     /**
      *
-     * @param string $time
-     * @param DateTimeZone $timezone
+     * @param  string  $time
+     * @param  DateTimeZone|null  $timezone
      */
     public function __construct($time = 'now', DateTimeZone $timezone = null)
     {
@@ -113,7 +113,7 @@ class FaDateTime extends DateTime
 
     /**
      *
-     * @param DateTimeZone $timezone
+     * @param DateTimeZone|null $timezone
      * @return FaDateTime
      */
     public static function now(DateTimeZone $timezone = null)
@@ -148,7 +148,7 @@ class FaDateTime extends DateTime
      * @param int $hour
      * @param int $minute
      * @param int $second
-     * @param DateTimeZone $timezone
+     * @param DateTimeZone|null $timezone
      * @return FaDateTime
      */
     public static function createFromJalali(
