@@ -9,7 +9,7 @@
     "Jalali"
   ],
   "type": "library",
-  "version": "1.3",
+  "version": "1.4",
   "homepage": "https://github.com/mohamadnorouzi20/fa-php",
   "license": "MIT",
   "authors": [
@@ -19,12 +19,12 @@
     }
   ],
   "require": {
-    "php": "^7.3"
+    "php": "^7.3 || ^8.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.0",
+    "phpunit/phpunit": "^9.3.10",
     "nunomaduro/collision": "^5.0",
-    "pestphp/pest": "^0.2.3"
+    "pestphp/pest": "^0.3.13"
   },
   "autoload": {
     "psr-4": {
